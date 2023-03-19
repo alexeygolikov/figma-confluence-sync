@@ -49,7 +49,7 @@ Run the script:
 python main.py
 ```
 
-## Deployment with Docker
+## Usage with Docker
 
 1. Build the Docker image:
 
@@ -65,7 +65,7 @@ docker run -d --name figma-confluence-sync --env-file .env figma-confluence-sync
 
 or
 
-```commandline
+```
 docker run -d --name figma-confluence-sync \
            -e CONFLUENCE_API_KEY=your_confluence_api_key \
            -e CONFLUENCE_EMAIL=your_confluence_email \
@@ -77,6 +77,13 @@ docker run -d --name figma-confluence-sync \
            -e FIGMA_FILES_FILTER=afsdafgasdfsafsadfsdff \
            figma-confluence-sync
 ```
+
+**Note:** The `CONFLUENCE_FILE_PATTERN_FILTER` and `FIGMA_FILES_FILTER` environment variables are optional.
+
+**Note:** Pre-built Docker images are available
+on [Docker Hub](https://hub.docker.com/r/alexeygolikov/figma-confluence-sync/tags):
+
+```alexeygolikov/figma-confluence-sync:latest```
 
 ## License
 
