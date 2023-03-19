@@ -4,6 +4,7 @@ Confluence attachments and Figma files, and updates the Confluence page with the
 """
 
 import os
+import sys
 import logging
 
 from dotenv import load_dotenv
@@ -22,6 +23,15 @@ confluence_file_pattern_filter = os.getenv("CONFLUENCE_FILE_PATTERN_FILTER")
 figma_api_key = os.getenv("FIGMA_API_KEY")
 figma_team_id = os.getenv("FIGMA_TEAM_ID")
 figma_files_filter = os.getenv("FIGMA_FILES_FILTER")
+
+required_env_vars = ["CONFLUENCE_API_KEY", "CONFLUENCE_EMAIL", "CONFLUENCE_BASE_URL",
+                     "CONFLUENCE_PAGE_ID", "FIGMA_API_KEY", "FIGMA_TEAM_ID"]
+
+missing_env_vars = [var for var in required_env_vars if os.environ.get(var) is None]
+
+if missing_env_vars:
+    print(f"Missing required environment variables: {', '.join(missing_env_vars)}", file=sys.stderr)
+    sys.exit(1)
 
 confluence = Confluence(confluence_base_url, confluence_api_key, confluence_email, confluence_file_pattern_filter)
 figma = Figma(figma_api_key, figma_team_id, figma_files_filter)

@@ -12,4 +12,4 @@ RUN pip install -r requirements.txt
 COPY . .
 
 # Start the application
-CMD [ "python", "main.py" ]
+CMD [ "python", "main.py", "--rm" ]

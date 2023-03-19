@@ -60,7 +60,22 @@ docker build -t figma-confluence-sync .
 2. Run the Docker container:
 
 ```commandline
-docker run -d --name figma-confluence-sync --env-file .env your-dockerhub-username/figma-confluence-sync:latest
+docker run -d --name figma-confluence-sync --env-file .env figma-confluence-sync
+```
+
+or
+
+```commandline
+docker run -d --name figma-confluence-sync \
+           -e CONFLUENCE_API_KEY=your_confluence_api_key \
+           -e CONFLUENCE_EMAIL=your_confluence_email \
+           -e CONFLUENCE_BASE_URL=https://your-confluence-instance.atlassian.net \
+           -e CONFLUENCE_PAGE_ID=1234567890 \
+           -e CONFLUENCE_FILE_PATTERN_FILTER=export \
+           -e FIGMA_API_KEY=your_figma_api_key \
+           -e FIGMA_TEAM_ID=1234567890 \
+           -e FIGMA_FILES_FILTER=afsdafgasdfsafsadfsdff \
+           figma-confluence-sync
 ```
 
 ## License
